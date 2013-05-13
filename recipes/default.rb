@@ -2,10 +2,9 @@
 # Cookbook Name:: tarsnap
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Author: Glen Zangiroami <http://github.com/glenbot>
 #
-# All rights reserved - Do Not Redistribute
-#
+# MIT Licensed
 include_recipe "build-essential"
 
 tarsnap_bin = "/usr/local/bin/tarsnap"
