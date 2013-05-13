@@ -31,6 +31,12 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
+    <td><tt>[:tarsnap][:install_only]</tt></td>
+    <td>Boolean</td>
+    <td>Only builds and install tarsnap. Use this if you already have a key you want to use on the box. This will not install keys or backup script.</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
     <td><tt>[:tarsnap][:private_key]</tt></td>
     <td>String</td>
     <td>Location of private key file</td>
@@ -43,28 +49,37 @@ Attributes
     <td><tt>/root/tarsnap-limited.key</tt></td>
   </tr>
   <tr>
-    <td><tt>[:tarsnap][:backup_script]</tt></td>
-    <td>String</td>
-    <td>Location of the backup shell script</td>
-    <td><tt>/root/backup.sh</tt></td>
+    <td><tt>[:tarsnap][:use_backup_script]</tt></td>
+    <td>Boolean</td>
+    <td>Whether or not to use the backup script and cron task. In other words, you are just installing tarsnap and creating a key.</td>
+    <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>[:tarsnap][:backup_log]</tt></td>
-    <td>String</td>
-    <td>Location of the log file used by the backup shell script</td>
-    <td><tt>/var/log/tarsnap_backup.log</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:tarsnap][:backup_retention]</tt></td>
-    <td>Integer</td>
-    <td>Number of days to retain backups. Used by the backup shell script</td>
-    <td><tt>/var/log/tarsnap_backup.log</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:tarsnap][:backup_directories]</tt></td>
-    <td>Array</td>
-    <td>Array of directories the backup script should back up.</td>
-    <td><tt>['/var/www', '/home']</tt></td>
+    <td><tt>[:tarsnap][:backup]</tt></td>
+    <td>Hash</td>
+    <td>A hash of all the variables associate with the simple backup script</td>
+    <td><tt>
+      ```ruby
+      default[:tarsnap][:backup] = {
+          # where backup script from template gets written to
+          "script" => "/root/backup.sh",
+          # backup script log file -- see backup.sh.erb template
+          "log" => "/var/log/tarsnap_backup.log",
+          # backup 1 hour intervals. You can use the following:
+          # minute, hour, day, month. Please retain the space.
+          "interval" => "1 hour",
+          # remove backups that are 24 hours old
+          # NOTE: this must match interval -- so if interval is 1 day, retention must be
+          # somethins like 7 day
+          "retention" => "24 hour",
+          # backup script directories -- see backup.sh.erb template
+          # backup the following directories on the system, a list of absolute paths
+          # OVERRIDE ME!
+          "directories" => ['/var/www', '/home'],
+          # backup name. Will be prepended to a timestamp
+          "name" => "backup"
+      }```
+    </tt></td>
   </tr>
 </table>
 
@@ -73,7 +88,7 @@ Usage
 
 This recipe depends on a data bag called `tarsnap` with a data bag item called `user`.
 
-The recipe calls
+The default recipe calls
 
 ```ruby
 tarsnap_user = Chef::EncryptedDataBagItem.load("tarsnap", "user")
