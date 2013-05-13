@@ -18,3 +18,7 @@ This file is used to list changes made in each version of tarsnap.
 
 * Updated the generation of the bash script to reflect backup attribute changes. Added attribute
 to turn off key generation if you just want to install tarsnap. Doc updates.
+
+## 0.1.5
+
+* Updated Readme.
