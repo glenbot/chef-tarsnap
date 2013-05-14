@@ -99,7 +99,7 @@ script "install_tarsnap" do
     EOH
 end
 
-if not node[:tarsnap][:install_only] and node[:tarsnap][:use_backup_script]
+if node[:tarsnap][:use_backup_script]
     interval = generate_interval(node[:tarsnap][:backup][:interval])
     retention = generate_retention(node[:tarsnap][:backup][:retention])
 

@@ -24,13 +24,13 @@ Attributes
 
 #### tarsnap::default
 
-* `[:tarsnap][:install_only]` **Boolean** (default: false) Only builds and installs tarsnap. Use this if you already have a key you want to use on the box. This will not install keys or backup script.</td>
+* `[:tarsnap][:install_only]` **Boolean** (default: false) Only builds and installs tarsnap. Use this if you already have a key you want to use on the box. This will not generate new keys.</td>
 
 * `[:tarsnap][:private_key]` **String** (default: "/root/tarsnap.key") Location of private key file</tt></td>
 
 * `[:tarsnap][:limited_private_key]` **String** (default: "/root/tarsnap-limited.key") Location of limited (read only) private key file</td>
 
-* `[:tarsnap][:use_backup_script]` **Boolean** (default: "/root/tarsnap-limited.key") Whether or not to use the backup script and cron task. In other words, you are just installing tarsnap and creating a key.</tt></td>
+* `[:tarsnap][:use_backup_script]` **Boolean** (default: "/root/tarsnap-limited.key") Whether or not to use the backup script and cron task.</tt></td>
 
 * `[:tarsnap][:backup]` **Hash** (default: see below) A hash of all the variables associated with the simple backup script
 
