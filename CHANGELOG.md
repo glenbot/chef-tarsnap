@@ -26,3 +26,7 @@ to turn off key generation if you just want to install tarsnap. Doc updates.
 ## 0.1.6
 
 * Updated backup script logic.
+
+## 0.1.7
+
+* Added tarsnap conf files and attributes for that conf file

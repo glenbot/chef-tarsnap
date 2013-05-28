@@ -99,6 +99,11 @@ script "install_tarsnap" do
     EOH
 end
 
+# install the configuration file
+template "/usr/local/etc/tarsnap.conf" do
+    source "tarsnap.conf.erb"
+end
+
 if node[:tarsnap][:use_backup_script]
     interval = generate_interval(node[:tarsnap][:backup][:interval])
     retention = generate_retention(node[:tarsnap][:backup][:retention])

@@ -55,3 +55,36 @@ default[:tarsnap][:backup] = {
     # backup name. Will be prepended to a timestamp
     "name" => "backup"
 }
+
+# Default conf settings
+# ---------------------
+# These settings will get laid in /usr/local/etc/tarsnap.conf
+default[:tarsnap][:conf] = {
+    # Tarsnap cache directory
+    "cache_dir" => "/usr/local/tarsnap-cache",
+    # Tarsnap key file
+    "key_file" => default[:tarsnap][:limited_private_key],
+    # Don't archive files which have the nodump flag set
+    "no_dump" => true,
+    # Print statistics when creating or deleting archives
+    "print_stats" => true,
+    # Create a checkpoint once per GB of uploaded data.
+    "checkpoint_bytes" => "1GB",
+    # Aggressive network behaviour: Use multiple TCP connections when
+    # writing archives.  Use of this option is recommended only in
+    # cases where TCP congestion control is known to be the limiting
+    # factor in upload performance.
+    "aggressive_networking" => false,
+    # Attempt to reduce tarsnap memory consumption.  This option
+    # will slow down the process of creating archives, but may help
+    # on systems where the average size of files being backed up is
+    # less than 1 MB.
+    "low_mem" => false,
+    # Try even harder to reduce tarsnap memory consumption.  This can
+    # significantly slow down tarsnap, but reduces its memory usage
+    # by an additional factor of 2 beyond what the lowmem option does.
+    "very_low_mem" => false,
+    # Snapshot time.  Use this option if you are backing up files
+    # from a filesystem snapshot rather than from a "live" filesystem.
+    "snap_time" => nil
+}
