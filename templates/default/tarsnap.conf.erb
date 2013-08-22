@@ -21,6 +21,11 @@ checkpoint-bytes <%= @node[:tarsnap][:conf][:checkpoint_bytes] %>
 
 ### Other options, not applicable to most systems
 
+<% if @node[:tarsnap][:conf][:humanize_numbers] -%>
+# Use SI prefixes to make numbers printed by --print-stats more readable.
+humanize-numbers
+<% end -%>
+
 <% if @node[:tarsnap][:conf][:aggressive_networking] -%>
 # Aggressive network behaviour: Use multiple TCP connections when
 # writing archives.  Use of this option is recommended only in
