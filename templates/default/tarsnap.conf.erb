@@ -22,6 +22,7 @@ checkpoint-bytes <%= @node[:tarsnap][:conf][:checkpoint_bytes] %>
 ### Other options, not applicable to most systems
 
 <% if @node[:tarsnap][:conf][:humanize_numbers] -%>
+# Use SI prefixes to make numbers printed by --print-stats more readable.
 humanize-numbers
 <% end -%>
 
