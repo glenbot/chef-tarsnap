@@ -8,8 +8,6 @@
 include_recipe "build-essential"
 
 tarsnap_bin = "/usr/local/bin/tarsnap"
-tarsnap_user = Chef::EncryptedDataBagItem.load("tarsnap", "user") 
-
 
 def generate_cron_interval(interval)
     intervals = ["minute", "hour", "day", "month", "weekday"]
@@ -136,6 +134,9 @@ end
 
 
 if not node[:tarsnap][:install_only]
+
+    tarsnap_user = Chef::EncryptedDataBagItem.load("tarsnap", "user")
+
     # create initial private key and register box with tarsnap
     bash "create_tarsnap_private_key" do
         not_if do
