@@ -74,6 +74,8 @@ default[:tarsnap][:conf] = {
     "print_stats" => true,
     # Create a checkpoint once per GB of uploaded data.
     "checkpoint_bytes" => "1GB",
+    # Use SI prefixes to make numbers printed by --print-stats more readable.
+    "humanize_numbers" => false,
     # Aggressive network behaviour: Use multiple TCP connections when
     # writing archives.  Use of this option is recommended only in
     # cases where TCP congestion control is known to be the limiting
